@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import f1_score, accuracy_score, precision_score, recall_score
 from xgboost import XGBClassifier 
 
@@ -28,7 +29,7 @@ def evaluate_model(model_name, y_true, y_pred):
     print(f"Accuracy:          {accuracy:.4f}")
     print(f"Precision:         {precision:.4f}")
     print(f"Recall:            {recall:.4f}")
-    print("-" * 20)
+    print("-" * 25)
 
 # Load datasets
 df_train = load_data(r"C:\Users\parvs\Downloads\train.csv")
@@ -39,6 +40,11 @@ X_train, y_train = split_data(df_train)
 X_val, y_val = split_data(df_val)
 
 print("Files Read")
+
+# --- Label Encode Target Variable ---
+label_encoder = LabelEncoder()
+y_train = label_encoder.fit_transform(y_train)
+y_val = label_encoder.transform(y_val) 
 
 # Split into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(
@@ -55,15 +61,26 @@ print("Vectorizing Data Finished")
 
 # --- XGBoost ---
 xgb_clf = XGBClassifier(
-    n_estimators=100,         # Start with a reasonable number of trees
-    learning_rate=0.1,      # Control the step size (try 0.01, 0.05, 0.1)
-    max_depth=5,             # Limit tree depth to prevent overfitting (try 3-7)
-    subsample=0.8,           # Use a fraction of the data for each tree 
-    colsample_bytree=0.8,      # Use a fraction of features for each tree
-    random_state=42,         # For reproducibility
-    n_jobs=-1                # Use all CPU cores for faster training 
+    n_estimators=100,
+    learning_rate=0.1,
+    max_depth=5, # prevent overfitting try 3-7
+    subsample=0.8,
+    colsample_bytree=0.8,
+    random_state=42, # Seed
+    n_jobs=-1
 )
 
 xgb_clf.fit(X_train_vec, y_train)
 y_pred_xgb = xgb_clf.predict(X_val_vec)
 evaluate_model("XGBoost", y_val, y_pred_xgb)
+
+# ===================================================================
+# Output
+# ===================================================================
+
+# --- XGBoost -------------
+# Weighted F1 Score: 0.8663
+# Accuracy:          0.8668
+# Precision:         0.8660
+# Recall:            0.8668
+# -------------------------
