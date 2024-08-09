@@ -1,9 +1,11 @@
 # ClassificationModel_Assg
 
 # Approach
+
 This project(assignment)’s aim was to classify research paper abstracts into the 7 given domains. First, as always, I started off with cleaning the dataset, no matter good the source. I started off with removing duplicate rows, handled missing values, converted all letters to lowercase, removed whitespaces, HTML links, and used NLTK to remove stop words, as well as low content abstract rows. I wanted to test my abilities to make a good model, so I listed down a few models I wanted to work with, which are what took shape and are listed below. I started off with the basics, LR, SVM, NB. This then led me to use ensemble learning, where I used stacking and voting. I followed this up by using bagging and boosting (random forest and gradient boosting), which ended up taking considerably longer, and made me implement XG Boost with encoded label values.
 
 # PATH
+
 1.	Loaded the training and validation data from local files.
 2.	Split the data into testing and training splits, as well as their columns (features and labels)
     - Added Encoding for XG Boost training
@@ -32,7 +34,7 @@ This project(assignment)’s aim was to classify research paper abstracts into t
 ```XGBoost.py```:
 - XG Boost
 
-# Outputs
+# Outputs | Results
 
 ## Bag_boost.py:
 
@@ -79,6 +81,7 @@ The key assumptions being made here are:
 4.	Imbalance of data skewed in favor of one label or another
 
 # Future Scope
+
 1.	Can use more sophisticated methods which encapsulate word2vec, fastText, as well as using semantic aware models
 2.	Train the model on each Domain’s sub-domain to make it achieve mastery
 3.	Can implement data augmentation to combat the lack of small dataset
