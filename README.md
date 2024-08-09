@@ -34,15 +34,40 @@ This project(assignment)’s aim was to classify research paper abstracts into t
 
 # Outputs
 
-Bag_boost.py:
- 
-Ensemble_stacking.py:
- 
-Ensemble_voting.py:
+## Bag_boost.py:
 
-XGBoost.py:
+<p align="center">
+  <img src="https://raw.githubusercontent.com/PoyBoi/ClassificationModel_Assg/main/images_static/Screenshot%202024-08-09%20153941.png">
+  <br>
+</p>
  
-Main_modular.py:
+## Ensemble_stacking.py:
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/PoyBoi/ClassificationModel_Assg/main/images_static/Screenshot%202024-08-09%20154033.png">
+  <br>
+</p>
+ 
+## Ensemble_voting.py:
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/PoyBoi/ClassificationModel_Assg/main/images_static/Screenshot%202024-08-09%20154109.png">
+  <br>
+</p>
+
+## XGBoost.py:
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/PoyBoi/ClassificationModel_Assg/main/images_static/Screenshot%202024-08-09%20154256.png">
+  <br>
+</p>
+ 
+## Main_modular.py:
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/PoyBoi/ClassificationModel_Assg/main/images_static/Screenshot%202024-08-09%20153904.png">
+  <br>
+</p>
  
 # Assumptions
 
