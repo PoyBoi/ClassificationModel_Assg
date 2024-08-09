@@ -8,7 +8,6 @@ from sklearn.ensemble import StackingClassifier
 from sklearn.metrics import f1_score, accuracy_score, precision_score, recall_score
 
 def load_data(file_path):
-    """Loads data from CSV."""
     print(f"Loading data from: {file_path}")
     column_names = ["Abstract", "Domain"]
     df = pd.read_csv(file_path, header=None, names=column_names)
@@ -16,14 +15,12 @@ def load_data(file_path):
     return df
 
 def split_data(df):
-    """Splits DataFrame into features and labels."""
     X = df['Abstract']
     y = df['Domain']
     print(f"Data split into features (X) with shape: {X.shape} and labels (y) with shape: {y.shape}")
     return X, y
 
 def evaluate_model(model_name, y_true, y_pred):
-    """Evaluates model and prints metrics."""
     f1 = f1_score(y_true, y_pred, average='weighted')
     accuracy = accuracy_score(y_true, y_pred)
     precision = precision_score(y_true, y_pred, average='weighted')
