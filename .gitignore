@@ -162,3 +162,4 @@ cython_debug/
 #.idea/
 
 scripts/test_1.py
+technical_exp.md
