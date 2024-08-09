@@ -1,5 +1,8 @@
 import pandas as pd
 import numpy as np
+import nltk
+nltk.download('stopwords')
+from nltk.corpus import stopwords
 
 def load_and_clean_data(file_path):
     print(f"Loading data from: {file_path}")
@@ -13,7 +16,6 @@ def load_and_clean_data(file_path):
 
     df['Abstract'] = df['Abstract'].str.replace('[^a-zA-Z0-9\s]', '', regex=True).str.lower()
 
-    # Extra whitespace removal
     df['Abstract'] = df['Abstract'].str.strip()
 
     # --- Additional Robust Cleaning ---
@@ -22,10 +24,6 @@ def load_and_clean_data(file_path):
 
     df['Abstract'] = df['Abstract'].str.replace(r'http\S+', '', regex=True)
 
-    # Remove stop words
-    import nltk
-    nltk.download('stopwords')
-    from nltk.corpus import stopwords
     stop_words = set(stopwords.words('english'))
     df['Abstract'] = df['Abstract'].apply(lambda x: ' '.join([word for word in x.split() if word not in stop_words]))
 
