@@ -8,7 +8,6 @@ from sklearn.ensemble import VotingClassifier
 from sklearn.metrics import f1_score, accuracy_score, precision_score, recall_score
 
 def load_data(file_path):
-    """Loads data from CSV."""
     print(f"Loading data from: {file_path}")
     column_names = ["Abstract", "Domain"]
     df = pd.read_csv(file_path, header=None, names=column_names)
@@ -16,14 +15,12 @@ def load_data(file_path):
     return df
 
 def split_data(df):
-    """Splits DataFrame into features and labels."""
     X = df['Abstract']
     y = df['Domain']
     print(f"Data split into features (X) with shape: {X.shape} and labels (y) with shape: {y.shape}")
     return X, y
 
 def evaluate_model(model_name, y_true, y_pred):
-    """Evaluates model and prints metrics."""
     f1 = f1_score(y_true, y_pred, average='weighted')
     accuracy = accuracy_score(y_true, y_pred)
     precision = precision_score(y_true, y_pred, average='weighted')
@@ -34,7 +31,7 @@ def evaluate_model(model_name, y_true, y_pred):
     print(f"Accuracy:          {accuracy:.4f}")
     print(f"Precision:         {precision:.4f}")
     print(f"Recall:            {recall:.4f}")
-    print("-" * 20)
+    print("-" * 25)
 
 # Load datasets
 df_train = load_data(r"C:\Users\parvs\Downloads\train.csv")
@@ -81,3 +78,14 @@ voting_clf.fit(X_train_vec, y_train)
 print("Evaluating Voting Classifier")
 y_pred_voting = voting_clf.predict(X_val_vec)
 evaluate_model("Voting Classifier", y_val, y_pred_voting)
+
+# ===================================================================
+# Output
+# ===================================================================
+
+# --- Voting Classifier ---
+# Weighted F1 Score: 0.9099
+# Accuracy:          0.9104
+# Precision:         0.9098
+# Recall:            0.9104
+# -------------------------

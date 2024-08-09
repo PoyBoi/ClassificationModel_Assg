@@ -107,3 +107,34 @@ y_pred_best = best_model.predict(X_val)
 evaluate_model("Best Model (Validation)", y_val, y_pred_best)
 
 print("Finished...")
+
+# ===================================================================
+# Output
+# ===================================================================
+
+# --- Logistic Regression (Validation) ---
+# Weighted F1 Score: 0.9072
+# Accuracy:          0.9076
+# Precision:         0.9072
+# Recall:            0.9076
+# ----------------------------------------
+# --- Linear SVM (Validation) ---
+# Weighted F1 Score: 0.9026
+# Accuracy:          0.9029
+# Precision:         0.9025
+# Recall:            0.9029
+# ----------------------------------------
+# --- Multinomial Naive Bayes (Validn) ---
+# Weighted F1 Score: 0.8932
+# Accuracy:          0.8947
+# Precision:         0.8946
+# Recall:            0.8947
+# ----------------------------------------
+# Best Parameters: 
+# {'lr__C': 10, 'lr__penalty': 'l2', 'lr__solver': 'liblinear'}
+# --- Best Model (Validation) ------------
+# Weighted F1 Score: 0.9064
+# Accuracy:          0.9068
+# Precision:         0.9064
+# Recall:            0.9068
+# ----------------------------------------

@@ -3,10 +3,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.metrics import f1_score, accuracy_score, precision_score, recall_score
-from xgboost import XGBClassifier 
 
 def load_data(file_path):
-    """Loads data from CSV."""
     print(f"Loading data from: {file_path}")
     column_names = ["Abstract", "Domain"]
     df = pd.read_csv(file_path, header=None, names=column_names)
@@ -14,14 +12,12 @@ def load_data(file_path):
     return df
 
 def split_data(df):
-    """Splits DataFrame into features and labels."""
     X = df['Abstract']
     y = df['Domain']
     print(f"Data split into features (X) with shape: {X.shape} and labels (y) with shape: {y.shape}")
     return X, y
 
 def evaluate_model(model_name, y_true, y_pred):
-    """Evaluates model and prints metrics."""
     f1 = f1_score(y_true, y_pred, average='weighted')
     accuracy = accuracy_score(y_true, y_pred)
     precision = precision_score(y_true, y_pred, average='weighted')
@@ -57,29 +53,31 @@ X_train_vec = vectorizer.fit_transform(X_train)
 X_val_vec = vectorizer.transform(X_val)
 print("Vectorizing Data Finished")
 
-# # --- Bagging (Random Forest) ---
-# rf_clf = RandomForestClassifier(n_estimators=100, random_state=42)
-# rf_clf.fit(X_train_vec, y_train)
-# y_pred_rf = rf_clf.predict(X_val_vec)
-# evaluate_model("Random Forest (Bagging)", y_val, y_pred_rf)
+# --- Bagging (Random Forest) ---
+rf_clf = RandomForestClassifier(n_estimators=100, random_state=42)
+rf_clf.fit(X_train_vec, y_train)
+y_pred_rf = rf_clf.predict(X_val_vec)
+evaluate_model("Random Forest (Bagging)", y_val, y_pred_rf)
 
-# # --- Boosting (Gradient Boosting) ---
-# gb_clf = GradientBoostingClassifier(n_estimators=100, random_state=42)
-# gb_clf.fit(X_train_vec, y_train)
-# y_pred_gb = gb_clf.predict(X_val_vec)
-# evaluate_model("Gradient Boosting", y_val, y_pred_gb)
+# --- Boosting (Gradient Boosting) ---
+gb_clf = GradientBoostingClassifier(n_estimators=100, random_state=42)
+gb_clf.fit(X_train_vec, y_train)
+y_pred_gb = gb_clf.predict(X_val_vec)
+evaluate_model("Gradient Boosting", y_val, y_pred_gb)
 
-# --- XGBoost ---
-xgb_clf = XGBClassifier(
-    n_estimators=100,         # Start with a reasonable number of trees
-    learning_rate=0.1,      # Control the step size (try 0.01, 0.05, 0.1)
-    max_depth=5,             # Limit tree depth to prevent overfitting (try 3-7)
-    subsample=0.8,           # Use a fraction of the data for each tree 
-    colsample_bytree=0.8,      # Use a fraction of features for each tree
-    random_state=42,         # For reproducibility
-    n_jobs=-1                # Use all CPU cores for faster training 
-)
+# ===================================================================
+# Output (Bagging AND Boosting)
+# ===================================================================
 
-xgb_clf.fit(X_train_vec, y_train)
-y_pred_xgb = xgb_clf.predict(X_val_vec)
-evaluate_model("XGBoost", y_val, y_pred_xgb)
+# --- Random Forest (Bagging) ---
+# Weighted F1 Score: 0.8514
+# Accuracy:          0.8544
+# Precision:         0.8537
+# Recall:            0.8544
+# --------------------
+# --- Gradient Boosting ---
+# Weighted F1 Score: 0.8648
+# Accuracy:          0.8654
+# Precision:         0.8646
+# Recall:            0.8654
+# --------------------

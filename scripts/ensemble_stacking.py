@@ -34,7 +34,7 @@ def evaluate_model(model_name, y_true, y_pred):
     print(f"Accuracy:          {accuracy:.4f}")
     print(f"Precision:         {precision:.4f}")
     print(f"Recall:            {recall:.4f}")
-    print("-" * 20)
+    print("-" * 27)
 
 # Load datasets
 df_train = load_data(r"C:\Users\parvs\Downloads\train.csv")
@@ -82,3 +82,14 @@ stacking_clf.fit(X_train_vec, y_train)
 print("Evaluating Stacking Classifier")
 y_pred_stacking = stacking_clf.predict(X_val_vec)
 evaluate_model("Stacking Classifier", y_val, y_pred_stacking)
+
+# ===================================================================
+# Output
+# ===================================================================
+
+# --- Stacking Classifier ---
+# Weighted F1 Score: 0.9117
+# Accuracy:          0.9118
+# Precision:         0.9118
+# Recall:            0.9118
+# ---------------------------
