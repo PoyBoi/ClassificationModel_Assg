@@ -89,7 +89,7 @@ print("Model Training Finished")
 param_grid = {
     'lr__C': [0.1, 1, 10],  # Notice 'lr__C' instead of just 'C'
     'lr__penalty': ['l1', 'l2'],
-    'lr__solver': ['liblinear', 'saga']
+    'lr__solver': ['liblinear'] # Removed Saga because it was more bigger datasets, and lbfgs because it onlt supports L2
 }
 
 # Create a pipeline for Logistic Regression
